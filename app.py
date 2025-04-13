@@ -30,7 +30,21 @@ print("2) lista następników\n")
 format = int(input())
 
 if format == 1:
-    print("todo") #todo
+    file = input("wczytaj graf z pliku: ")
+    graph = graph_al_from_file(file)##zmienić na poprawną funkcję
+    print("wybór algorytmu:\n")
+    print("kahn\n")
+    print("tarjan\n")
+    alg = int(input())
+    if alg == 1:
+        start = time.time()
+        kahn = KahneAlgorithm_NM(graph,)##dodaj tablice wierzchołków
+        end = time.time()
+    if alg == 2:
+        start = time.time()
+        tarjan = TarjanAlgorithm_NM(graph,)##dodaj tablice wierzchołków
+        end = time.time()
+    
 elif format == 2:
     file = input("wczytaj graf z pliku: ")
     graph = graph_al_from_file(file)
