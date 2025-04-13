@@ -1,6 +1,7 @@
 from graph_al import Graph_al
 from tarjan_sort import Tarjan_sort
 from kahn_al import Kahn_sort
+import time
 
 def graph_al_from_file(filename):
     with open(filename, "r") as f:
@@ -15,8 +16,33 @@ def graph_al_from_file(filename):
 
     return graph
 
-graph = graph_al_from_file("test.txt")
 
+print("wybierz format grafu:\n")
+print("1) lista sąsiedztwa\n")
+print("2) lista następników\n")
 
-tarjan = Tarjan_sort(graph)
-print(tarjan.topological_sort())
+format = int(input())
+
+if format == 1:
+    print("todo") #todo
+elif format == 2:
+    file = input("wczytaj graf z pliku: ")
+    graph = graph_al_from_file(file)
+    print("wybór algorytmu:\n")
+    print("kahn\n")
+    print("tarjan\n")
+    alg = int(input())
+    if alg == 1:
+        kahn = Kahn_sort(graph)
+        start = time.time()
+        result = kahn.topological_sort()
+        print(result)
+        end = time.time()
+    if alg == 2:
+        tarjan = Tarjan_sort(graph)
+        start = time.time()
+        result = tarjan.topological_sort()
+        print(result)
+        end = time.time()
+        
+
