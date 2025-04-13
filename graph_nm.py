@@ -1,3 +1,5 @@
+from typing import Dict, List
+
 ##wypisanie dowolnego grafu
 def printGraph(Tab):
     for i in Tab:
