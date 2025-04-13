@@ -1,6 +1,12 @@
 from graph_al import Graph_al
 from tarjan_sort import Tarjan_sort
 from kahn_al import Kahn_sort
+from kahn_nm import KahneAlgorithm_NM
+from kahn_nm import searchOfZeroVertice_NM
+from tarjan_nm import TarjanAlgorithm_NM
+from tarjan_nm import FindChild
+from tarjan_nm import FindFather
+from graph_nm import createNeighbourhoodMatrix
 import time
 
 def graph_al_from_file(filename):
