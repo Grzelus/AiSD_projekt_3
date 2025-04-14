@@ -13,6 +13,7 @@ def from_file(filename):
     with open(filename, "r") as f:
         lines = f.readlines()
     return lines
+
 def graph_al_from_file(filename):
     lines=from_file(filename)
     num_vertices, num_edges = map(int, lines[0].split())
@@ -25,6 +26,10 @@ def graph_al_from_file(filename):
 
     return graph
 
+def graph_nm_from_file(filename):
+    lines=from_file(filename)
+    return createNeighbourhoodMatrix(lines)
+
 
 print("wybierz format grafu:\n")
 print("1) lista sąsiedztwa\n")
@@ -34,18 +39,21 @@ format = int(input())
 
 if format == 1:
     file = input("wczytaj graf z pliku: ")
-    graph = graph_al_from_file(file)##zmienić na poprawną funkcję
+    graph,Vertices = graph_nm_from_file(file)
     print("wybór algorytmu:\n")
     print("kahn\n")
     print("tarjan\n")
     alg = int(input())
     if alg == 1:
         start = time.time()
-        kahn = KahneAlgorithm_NM(graph,)##dodaj tablice wierzchołków
+        kahn = KahneAlgorithm_NM(graph,Vertices )
         end = time.time()
     if alg == 2:
+        startVertice=int(input("Podaj początkowy wierzchołek"))
+        if startVertice<1:
+            print("Taki wierzchołek nie istnieje")
         start = time.time()
-        tarjan = TarjanAlgorithm_NM(graph,)##dodaj tablice wierzchołków
+        tarjan = TarjanAlgorithm_NM(graph,Vertices,startVertice)
         end = time.time()
     
 elif format == 2:

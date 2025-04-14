@@ -12,7 +12,18 @@ def FindFather(Graph,AvaliableVertices,current,color):
             return i
     return 0
 
-def TarjanAlgorithm_NM(Graph, Vertices,startingVertice):
+def searchOfZeroVertice_NM(Graph,AvailableVertices):
+    for i in AvailableVertices:
+        mini=0
+        for j in AvailableVertices:
+            mini=min(mini,Graph[i][j])
+        if not mini:
+            return i
+    return None
+
+def TarjanAlgorithm_NM(Graph, Vertices,startingVertice=0):
+    if startingVertice==0:
+        startingVertice=searchOfZeroVertice_NM(Graph,Vertices)
     AvaliableVertices=["white" for x in range(len(Vertices)+1)]
     currentVertice=startingVertice
     AvaliableVertices[startingVertice]="grey"
