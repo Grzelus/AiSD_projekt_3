@@ -57,7 +57,7 @@ elif format == 2:
     alg = int(input())
     if alg == 1:
         kahn = Kahn_sort(graph)
-        if kahn.graph.has_circle():
+        if kahn.graph.has_cycle():
             print("graf zawiera cykl.")
         start = time.time()
         result = kahn.topological_sort()
@@ -65,7 +65,7 @@ elif format == 2:
         end = time.time()
     elif alg == 2:
         tarjan = Tarjan_sort(graph)
-        if tarjan.graph.has_circle():
+        if tarjan.graph.has_cycle():
             print("graf zawiera cykl.")
         
 

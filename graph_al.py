@@ -15,7 +15,7 @@ class Graph_al:
                 indegrees[v] += 1
         return indegrees
 
-    def has_circle(self) -> bool:
+    def has_cycle(self) -> bool:
         visited: Set[int] = set()
         rec_stack: Set[int] = set()
 
