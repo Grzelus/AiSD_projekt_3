@@ -31,7 +31,8 @@ class Tarjan_sort:
             start_nodes = list(self.graph.adj_list.keys())
 
         for node in start_nodes:
-            self.dfs(node)
+            if node not in self.visited:
+                self.dfs(node)
 
         if self.has_circle:
             raise ValueError("Graf zawiera cykl.")

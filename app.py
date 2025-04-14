@@ -1,5 +1,5 @@
 from graph_al import Graph_al
-from tarjan_sort import Tarjan_sort
+from tarjan_al import Tarjan_sort
 from kahn_al import Kahn_sort
 from kahn_nm import KahneAlgorithm_NM
 from kahn_nm import searchOfZeroVertice_NM
@@ -49,8 +49,8 @@ elif format == 2:
     file = input("wczytaj graf z pliku: ")
     graph = graph_al_from_file(file)
     print("wybór algorytmu:\n")
-    print("kahn\n")
-    print("tarjan\n")
+    print("1) kahn\n")
+    print("2) tarjan\n")
     alg = int(input())
     if alg == 1:
         kahn = Kahn_sort(graph)
@@ -58,11 +58,19 @@ elif format == 2:
         result = kahn.topological_sort()
         print(result)
         end = time.time()
-    if alg == 2:
+    elif alg == 2:
         tarjan = Tarjan_sort(graph)
+        vertex = input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter): ")
+
         start = time.time()
-        result = tarjan.topological_sort()
+        if vertex.strip():
+            result = tarjan.topological_sort([int(vertex)])
+        else:
+            result = tarjan.topological_sort()
+
         print(result)
         end = time.time()
         
+    else:
+        print("wybierz poprawną konfigurację.")
 

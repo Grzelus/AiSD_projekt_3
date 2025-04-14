@@ -3,7 +3,7 @@ from typing import Dict, List
 class Graph_al:
     def __init__(self, num_vertices: int):
         self.num_vertices = num_vertices
-        self.adj_list: Dict[int, List[int]] = {i: [] for i in range(i, num_vertices + 1)}
+        self.adj_list: Dict[int, List[int]] = {i: [] for i in range(1, num_vertices + 1)}
 
     def add_edge(self, u: int, v: int):
         self.adj_list[u].append(v)
