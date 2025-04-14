@@ -24,7 +24,6 @@ def graph_al_from_file(filename):
 
 def graph_nm_from_file(filename):
     lines=from_file(filename)
-    print(lines)
     return createNeighbourhoodMatrix(lines)
 
 
@@ -41,22 +40,23 @@ if format == 1:
         print("graf zawiera cykl.")
         exit()
     print("wybór algorytmu:\n")
-    print("kahn\n")
-    print("tarjan\n")
+    print("1) Kahn\n")
+    print("2) Tarjan\n")
     alg = int(input())
     if alg == 1:
-        
         start = time.time()
         kahn = KahneAlgorithm_NM(graph,Vertices)
         end = time.time()
+        print(kahn)
     if alg == 2:
-        startVertice=int(input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter):"))
-        if startVertice<1:
-            print("Taki wierzchołek nie istnieje")
+        startVertice=input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter):")
+        if(startVertice==""):
+            startVertice=1
         start = time.time()
         tarjan = TarjanAlgorithm_NM(graph,Vertices,int(startVertice))
         end = time.time()
-    
+        print(tarjan)
+
 elif format == 2:
     file = input("wczytaj graf z pliku: ")
     graph = graph_al_from_file(file)
@@ -93,4 +93,5 @@ elif format == 2:
         
     else:
         print("wybierz poprawną konfigurację.")
-
+        exit()
+    print(f"Czas wykonania algorytmu: {start-end}")

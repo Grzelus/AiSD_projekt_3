@@ -42,5 +42,5 @@ def createNeighbourhoodMatrix(Tab):
         else:
             print(f"Out of range {a} and {b}")
         cycle=has_cycle(Graph)
-
+    printGraph(Graph)
     return [Graph,AvailableVertices,cycle]
