@@ -1,4 +1,4 @@
-from typing import Dict,Set,List
+from typing import Dict, List, Set
 
 class Graph_al:
     def __init__(self, num_vertices: int):
@@ -14,8 +14,8 @@ class Graph_al:
             for v in self.adj_list[u]:
                 indegrees[v] += 1
         return indegrees
-        
-    def has_circle(self) -> bool:
+
+    def has_cycle(self) -> bool:
         visited: Set[int] = set()
         rec_stack: Set[int] = set()
 
@@ -28,7 +28,8 @@ class Graph_al:
                     if dfs(neighbor):
                         return True
                 elif neighbor in rec_stack:
-                    return True  
+                    return True
+
             rec_stack.remove(node)
             return False
 

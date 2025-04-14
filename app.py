@@ -57,12 +57,18 @@ elif format == 2:
     alg = int(input())
     if alg == 1:
         kahn = Kahn_sort(graph)
+        if kahn.graph.has_circle():
+            print("graf zawiera cykl.")
         start = time.time()
         result = kahn.topological_sort()
         print(result)
         end = time.time()
     elif alg == 2:
         tarjan = Tarjan_sort(graph)
+        if tarjan.graph.has_circle():
+            print("graf zawiera cykl.")
+        
+
         vertex = input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter): ")
 
         start = time.time()
