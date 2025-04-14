@@ -7,10 +7,9 @@ class Tarjan_sort:
         self.visited: Set[int] = set()
         self.rec_stack: Set[int] = set()
         self.result: List[int] = []
-        self.has_circle = False
 
     def dfs(self, node: int):
-        if self.has_circle:
+        if self.graph.has_circle:
             return
         
         self.visited.add(node)
@@ -20,7 +19,7 @@ class Tarjan_sort:
             if neighbor not in self.visited:
                 self.dfs(neighbor)
             elif neighbor in self.rec_stack:
-                self.has_circle = True
+                self.graph.has_circle = True
                 return
             
         self.rec_stack.remove(node)
@@ -34,7 +33,7 @@ class Tarjan_sort:
             if node not in self.visited:
                 self.dfs(node)
 
-        if self.has_circle:
+        if self.graph.has_circle:
             raise ValueError("Graf zawiera cykl.")
         
         return self.result[::-1]
