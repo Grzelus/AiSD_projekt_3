@@ -2,10 +2,7 @@ from graph_al import Graph_al
 from tarjan_al import Tarjan_sort
 from kahn_al import Kahn_sort
 from kahn_nm import KahneAlgorithm_NM
-from kahn_nm import searchOfZeroVertice_NM
 from tarjan_nm import TarjanAlgorithm_NM
-from tarjan_nm import FindChild
-from tarjan_nm import FindFather
 from graph_nm import createNeighbourhoodMatrix
 import time
 
@@ -23,11 +20,11 @@ def graph_al_from_file(filename):
     for line in lines[1:]:
         u, v = map(int, line.split())
         graph.add_edge(u, v)
-
     return graph
 
 def graph_nm_from_file(filename):
     lines=from_file(filename)
+    print(lines)
     return createNeighbourhoodMatrix(lines)
 
 
@@ -39,21 +36,25 @@ format = int(input())
 
 if format == 1:
     file = input("wczytaj graf z pliku: ")
-    graph,Vertices = graph_nm_from_file(file)
+    [graph,Vertices,cycle] = graph_nm_from_file(file)
+    if cycle:
+        print("graf zawiera cykl.")
+        exit()
     print("wybór algorytmu:\n")
     print("kahn\n")
     print("tarjan\n")
     alg = int(input())
     if alg == 1:
+        
         start = time.time()
-        kahn = KahneAlgorithm_NM(graph,Vertices )
+        kahn = KahneAlgorithm_NM(graph,Vertices)
         end = time.time()
     if alg == 2:
-        startVertice=int(input("Podaj początkowy wierzchołek"))
+        startVertice=int(input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter):"))
         if startVertice<1:
             print("Taki wierzchołek nie istnieje")
         start = time.time()
-        tarjan = TarjanAlgorithm_NM(graph,Vertices,startVertice)
+        tarjan = TarjanAlgorithm_NM(graph,Vertices,int(startVertice))
         end = time.time()
     
 elif format == 2:
