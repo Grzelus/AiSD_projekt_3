@@ -51,7 +51,7 @@ if format == 1:
     if alg == 2:
         startVertice=input("wybierz wierzchołek z którego chcesz zacząć (domyślnie - Enter):")
         if(startVertice==""):
-            startVertice=1
+            startVertice=0
         start = time.time()
         tarjan = TarjanAlgorithm_NM(graph,Vertices,int(startVertice))
         end = time.time()

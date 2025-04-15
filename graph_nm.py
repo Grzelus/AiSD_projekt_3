@@ -4,20 +4,22 @@ from typing import Dict, List
 def printGraph(Tab):
     for i in Tab:
         print(i)
-def has_cycle(adj_matrix):
-    n = len(adj_matrix)
-    visited = [0] * n  # 0 = nieodwiedzony, 1 = w trakcie, 2 = przetworzony
+##szukanie cyklu
+def has_cycle(Graph):
+    n = len(Graph)
+    visited = [0] * n 
 
-    def dfs(u):
-        visited[u] = 1  # oznacz jako "w trakcie odwiedzania"
+    def dfs(start):
+        current = start
+        visited[current] = 1
         for v in range(n):
-            if adj_matrix[u][v] == 1:
+            if Graph[current][v] == 1:
                 if visited[v] == 1:
-                    return True  # cykl znaleziony!
+                    return True
                 if visited[v] == 0:
                     if dfs(v):
                         return True
-        visited[u] = 2  # oznacz jako "przetworzony"
+        visited[current] = 2
         return False
 
     for node in range(n):
@@ -33,7 +35,9 @@ def createNeighbourhoodMatrix(Tab):
     AvailableVertices=[]
     for i in range(1,A+1):
         AvailableVertices.append(i)
+
     Graph=[[0 for x in range(A+1)]for y in range(A+1)]
+    
     for i in range(1,V+1):
         a,b=map(int,Tab[i].split())
         if(a<=A and b<=A):
@@ -42,5 +46,6 @@ def createNeighbourhoodMatrix(Tab):
         else:
             print(f"Out of range {a} and {b}")
         cycle=has_cycle(Graph)
+
     printGraph(Graph)
     return [Graph,AvailableVertices,cycle]
